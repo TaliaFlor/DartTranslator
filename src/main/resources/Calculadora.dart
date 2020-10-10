@@ -22,5 +22,5 @@ void main() {
     result = a * b;
   }
   
-  print('O resultado é: $result ');
+  print('O resultado é: ' + result);
 }
