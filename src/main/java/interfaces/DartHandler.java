@@ -2,7 +2,9 @@ package interfaces;
 
 import enums.Type;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public interface DartHandler {
@@ -22,7 +24,10 @@ public interface DartHandler {
     Map<String, Boolean> booleans = new HashMap<>();
     Map<String, String> strings = new HashMap<>();
 
+    List<String> linhas = new ArrayList<>();
 
-    void readLine(String line);
+
+
+    //void readLine(String line);
 
 }

@@ -1,31 +1,28 @@
 package arquivo;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Serializable;
 
-public class LerArquivo implements Serializable {
+import interfaces.DartHandler;
 
-    private static final String IF = "if";
-    private static final String ELSE = "else";
-    private static final String ELSEIF = "else if";
+import java.io.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
-    public void lerArquivo() throws FileNotFoundException {
+public class LerArquivo implements Serializable, DartHandler {
+
+    public void lerArquivo() {
 
         try {
-            File fr = new File("../../resources/Calculadora.dart");
+            File fr = new File("C:\\Users\\m_vit\\OneDrive\\Documentos\\Tradutor de Dart\\tradutor-dart-java\\src\\main\\resources\\Calculadora.dart");
+            System.out.println(fr.exists());
             BufferedReader br = new BufferedReader(new FileReader(fr));
-            
-            while (br.ready()) {
-                Object java = ControleFluxo(br.readLine());
-                System.out.println(java);
 
-            }
-            fr.close();
+            List<String> linhas = br.lines().collect(Collectors.toList());
+
+            // linhas.forEach(linha -> System.out.println(linha));
+
             br.close();
         } catch (IOException ex) {
-        };
+        }
+        ;
     }
 }
