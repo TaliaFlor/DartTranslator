@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LerArquivo implements Serializable, DartHandler {
+public class LerArquivo implements  DartHandler {
 
     public void lerArquivo() {
 
