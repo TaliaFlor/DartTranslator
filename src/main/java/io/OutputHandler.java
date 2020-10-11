@@ -31,7 +31,7 @@ public class OutputHandler implements DartHandler {
 //    private static final String SINAL_DE_SOMA = "+";
 
 
-    @Override
+
     public void readLine(String line) {
         if (!linhaValida(line)) {
             return;
