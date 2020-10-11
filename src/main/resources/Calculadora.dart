@@ -1,14 +1,14 @@
 import 'dart:io';
 
 void main() {
-	print('Escolha um nÃºmero:');
+	print('Escolha um número:');
   var a = double.parse(stdin.readLineSync());
-	print('Escolha outro nÃºmero:');
+	print('Escolha outro número:');
   var b = double.parse(stdin.readLineSync());
   print('Soma - 1');
-  print('SubtraÃ§Ã£o - 2');
-  print('DivisÃ£o - 3');
-  print('MultiplicaÃ§Ã£o - 4');
+  print('Subtração - 2');
+  print('Divisão - 3');
+  print('Multiplicação - 4');
   var op = int.parse(stdin.readLineSync());
   
   var result;
@@ -22,5 +22,5 @@ void main() {
     result = a * b;
   }
   
-  print('O resultado Ã©: ' + result);
+  print('O resultado é: ' + result);
 }
