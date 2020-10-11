@@ -14,6 +14,8 @@ public interface DartHandler {
      */
     Map<String, Type> nomesPorTipo = new HashMap<>();
 
+
+
     // Contém o nome da variável e seu valor de acordo com o seu tipo
     Map<String, Integer> ints = new HashMap<>();
     Map<String, Double> doubles = new HashMap<>();
