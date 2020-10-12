@@ -39,8 +39,7 @@ public class EscreverArquivo implements DartHandler {
             }
             br.write(fechaColchetes);
             br.newLine();
-            br.write(fechaColchetes);
-            br.newLine();
+
 
 
             br.close();

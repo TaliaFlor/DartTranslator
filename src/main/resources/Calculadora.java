@@ -11,6 +11,7 @@ System.out.println("Subtra��o - 2");
 System.out.println("Divis�o - 3");
 System.out.println("Multiplica��o - 4");
 int op = in.nextInt();
+double result;
 if(op == 1){
 result = a + b;
 }else if(op == 2){
@@ -21,6 +22,5 @@ result = a / b;
 result = a * b;
 }
 System.out.println("O resultado �: " + result);
-}
 }
 }

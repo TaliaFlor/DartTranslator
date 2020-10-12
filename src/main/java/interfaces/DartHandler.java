@@ -23,6 +23,7 @@ public interface DartHandler {
     Map<String, Double> doubles = new HashMap<>();
     Map<String, Boolean> booleans = new HashMap<>();
     Map<String, String> strings = new HashMap<>();
+    Map<String, Object> objects = new HashMap<>();
 
     List<String> linhas = new ArrayList<>();
 

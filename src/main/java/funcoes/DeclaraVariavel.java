@@ -124,8 +124,12 @@ public class DeclaraVariavel implements DartHandler {
 //				
 //			}
 			if(partes.length == 1){
-				nomesPorTipo.put(nome,Type.VAR);
+				/*nomesPorTipo.put(nome,Type.VAR);
 				escrever.addLinha("Object "+nome+ ";");
+				 */
+				nomesPorTipo.put(nome,Type.DOUBLE);
+				escrever.addLinha("double "+ nome + ";");
+				return;
 			}
 			if (partes[1].contains("double")) {
 //				double value = 0;
@@ -195,8 +199,21 @@ public class DeclaraVariavel implements DartHandler {
 			}
 
 
-		
 
+
+		}else{
+			/*line = line.replace(";", "").replace(" ","");
+			String[] partes = line.split("=");
+			String nome = partes[0];
+			Object valor = "";
+			Util util = new Util();
+
+			if(nomesPorTipo.containsKey(nome)){
+				Type tipo = nomesPorTipo.get(nome);
+				valor = util.getVariavel(nome);
+
+
+			}*/
 		}
 	}
 }

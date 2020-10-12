@@ -20,8 +20,10 @@ public class Util implements DartHandler {
 		else if(tipo == Type.DOUBLE || tipo == Type.NUM) {
 			valor = doubles.get(nomeVariavel);
 		}
-		else if(tipo == Type.STRING || tipo == Type.VAR) {
+		else if(tipo == Type.STRING) {
 			valor = strings.get(nomeVariavel);
+		}else if (tipo == Type.VAR){
+			valor = objects.get(nomeVariavel);
 		}
 		return valor;
 	}
