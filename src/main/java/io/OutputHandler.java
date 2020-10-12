@@ -15,8 +15,9 @@ public class OutputHandler implements DartHandler {
 		
 		linha = linha.replace("print", "").replace(";", "").replace("(", "").replace(")", "");
 		Object output = null;
-		if(linha.startsWith("'") && linha.endsWith("'")) {
-			output = linha.replace("'", "");
+
+		if (linha.startsWith("'")){
+			output = linha.replace("'", "\"");
 		}
 		else if(nomesPorTipo.containsKey(linha)) {
 			Util util = new Util();

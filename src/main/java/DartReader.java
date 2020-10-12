@@ -21,7 +21,8 @@ public class DartReader implements DartHandler {
 		EscreverArquivo escrever = new EscreverArquivo();
 
 		for (String linha : linhas) {
-			if(linha == null || linha.trim().isEmpty()) {
+			linha = linha.trim();
+			if(linha == null || linha.trim().isEmpty() || linha.startsWith("import") || linha.startsWith("void")) {
 				continue;
 
 			}

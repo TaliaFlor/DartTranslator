@@ -27,7 +27,7 @@ public class DeclaraVariavel implements DartHandler {
 			else if(line.contains("stdin.readLineSync()")) {
 				InputHandler input = new InputHandler();
 				
-			    escrever.addLinha(nome + " = " + input.lerInput(partes[1], Type.STRING));
+			    escrever.addLinha("String "+ nome + " = " + input.lerInput(partes[1], Type.STRING));
 			    return;
 				
 				
@@ -48,7 +48,7 @@ public class DeclaraVariavel implements DartHandler {
 			if(line.contains("stdin.readLineSync()")) {
 				InputHandler input = new InputHandler();
 				EscreverArquivo escrever = new EscreverArquivo();
-			    escrever.addLinha(nome + " = " + input.lerInput(partes[1], Type.INT));
+			    escrever.addLinha("int "+ nome + " = " + input.lerInput(partes[1], Type.INT));
 			    return;
 				
 			}
@@ -71,7 +71,7 @@ public class DeclaraVariavel implements DartHandler {
 			if(line.contains("stdin.readLineSync()")) {
 				InputHandler input = new InputHandler();
 				EscreverArquivo escrever = new EscreverArquivo();
-			    escrever.addLinha(nome + " = " + input.lerInput(partes[1], Type.DOUBLE));
+			    escrever.addLinha("double "+nome + " = " + input.lerInput(partes[1], Type.DOUBLE));
 			    return;
 				
 			}
@@ -95,7 +95,7 @@ public class DeclaraVariavel implements DartHandler {
 			if(line.contains("stdin.readLineSync()")) {
 				InputHandler input = new InputHandler();
 				EscreverArquivo escrever = new EscreverArquivo();
-			    escrever.addLinha(nome + " = " + input.lerInput(partes[1], Type.BOOLEAN));
+			    escrever.addLinha("boolean "+nome + " = " + input.lerInput(partes[1], Type.BOOLEAN));
 			    return;
 				
 			}
@@ -123,16 +123,17 @@ public class DeclaraVariavel implements DartHandler {
 //			    return;
 //				
 //			}
-			// TODO caso seja variável
-			//TODO caso seja input
-			//TODO colocar no map
+			if(partes.length == 1){
+				nomesPorTipo.put(nome,Type.VAR);
+				escrever.addLinha("Object "+nome+ ";");
+			}
 			if (partes[1].contains("double")) {
 //				double value = 0;
 //				doubles.put(partes[1], value);
 				if(line.contains("stdin.readLineSync()")) {
 					InputHandler input = new InputHandler();
 					EscreverArquivo escrever = new EscreverArquivo();
-				    escrever.addLinha(nome + " = " + input.lerInput(partes[1], Type.DOUBLE));
+				    escrever.addLinha("double "+nome + " = " + input.lerInput(partes[1], Type.DOUBLE));
 				    return;
 					
 				}
@@ -142,7 +143,7 @@ public class DeclaraVariavel implements DartHandler {
 				if(line.contains("stdin.readLineSync()")) {
 					InputHandler input = new InputHandler();
 					EscreverArquivo escrever = new EscreverArquivo();
-				    escrever.addLinha(nome + " = " + input.lerInput(partes[1], Type.INT));
+				    escrever.addLinha("int "+nome + " = " + input.lerInput(partes[1], Type.INT));
 				    return;
 					
 				}
@@ -153,7 +154,7 @@ public class DeclaraVariavel implements DartHandler {
 			if(line.contains("stdin.readLineSync()")) {
 				InputHandler input = new InputHandler();
 				EscreverArquivo escrever = new EscreverArquivo();
-			    escrever.addLinha(nome + " = " + input.lerInput(partes[1], Type.STRING));
+			    escrever.addLinha("String "+nome + " = " + input.lerInput(partes[1], Type.STRING));
 			    return;
 				
 			}
@@ -164,7 +165,7 @@ public class DeclaraVariavel implements DartHandler {
 			if(line.contains("stdin.readLineSync()")) {
 				InputHandler input = new InputHandler();
 				EscreverArquivo escrever = new EscreverArquivo();
-			    escrever.addLinha(nome + " = " + input.lerInput(partes[1], Type.BOOLEAN));
+			    escrever.addLinha("boolean "+nome + " = " + input.lerInput(partes[1], Type.BOOLEAN));
 			    return;
 				
 			}
@@ -192,6 +193,10 @@ public class DeclaraVariavel implements DartHandler {
 				}
 				
 			}
+
+
+		
+
 		}
 	}
 }

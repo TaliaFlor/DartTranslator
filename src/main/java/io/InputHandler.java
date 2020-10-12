@@ -7,14 +7,18 @@ import enums.Type;
 import interfaces.DartHandler;
 
 public class InputHandler implements DartHandler {
-	
+	private static boolean scanner = false;
+
 	public String lerInput(String str, Type tipo) {
 		if(!str.contains("stdin.readLineSync()")) {
 			return "";
 		}
 		EscreverArquivo escrever = new EscreverArquivo();
 		escrever.addImport("java.util.Scanner");
-		escrever.addLinha("Scanner in = new Scanner(System.in);");
+		if(!scanner) {
+			escrever.addLinha("Scanner in = new Scanner(System.in);");
+			scanner = true;
+		}
 		String in = "";
 		if(tipo == Type.INT) {
 			in = "in.nextInt();";
