@@ -7,15 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Writer implements DadosContainer {
-    private static final List<String> imports = new ArrayList<>();
-    private static final List<String> linhas = new ArrayList<>();
+    private static final String nomeArquivo = "Calculadora.java";
+    private static final String path = "src/main/resources/" + nomeArquivo;
+
     private static final String CLASSE = "public class Calculadora {";
     private static final String MAIN = "public static void main(String[] args) {";
     private static final String FECHA_CHAVES = "}";
 
-    // TODO relativizar paths
-    private static final String nomeArquivo = "Calculadora.java";
-    private static final String path = "C://Users/m_vit/OneDrive/Documentos/Tradutor de Dart/tradutor-dart-java/src/main/resources/" + nomeArquivo;
+    private static final List<String> imports = new ArrayList<>();
+    private static final List<String> linhas = new ArrayList<>();
 
 
     /**
@@ -62,8 +62,10 @@ public class Writer implements DadosContainer {
         try {
             limpar(file);
             escrever(file);
+
+            System.out.println("Arquivo escrito no path: " + path);
         } catch (FileNotFoundException e) {
-            System.out.println("Arquivo não encontrado no caminho: " + path);
+            System.out.println("O seguinte path é inválido para a escrita do arquivo: " + path);
         } catch (IOException e) {
             e.printStackTrace();
         }

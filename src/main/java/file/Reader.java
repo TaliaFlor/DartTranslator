@@ -6,11 +6,8 @@ import java.io.*;
 import java.util.stream.Collectors;
 
 public class Reader implements DadosContainer {
-
-    // TODO relativizar path
-
     private static final String nomeArquivo = "Calculadora.dart";
-    private static final String path = "C://Users/m_vit/OneDrive/Documentos/Tradutor de Dart/tradutor-dart-java/src/main/resources/" + nomeArquivo;
+    private static final String path = "src/main/resources/" + nomeArquivo;
 
     public static void lerArquivo() {
         try {

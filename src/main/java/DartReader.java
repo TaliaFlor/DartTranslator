@@ -14,6 +14,7 @@ public class DartReader implements DadosContainer {
 
             if (linha.isEmpty()) {
                 Writer.pularLinha();
+                continue;
             }
             if (linha.startsWith("import") || linha.startsWith("void")) {
                 continue;
@@ -21,7 +22,7 @@ public class DartReader implements DadosContainer {
 
             if (linha.startsWith("print(")) {
                 OutputHandler.print(linha);
-            } else if (isVariavel(linha)) {
+            } else if (hasVariavel(linha)) {
                 VariableHandler.definirVariavel(linha);
             } else {
                 Writer.addLinha(linha);
@@ -32,7 +33,7 @@ public class DartReader implements DadosContainer {
     }
 
 
-    private static boolean isVariavel(String linha) {
+    private static boolean hasVariavel(String linha) {
         return linha.startsWith("int") || linha.startsWith("double") || linha.startsWith("num") ||
                 linha.startsWith("boolean") || linha.startsWith("string") || linha.startsWith("var");
     }
