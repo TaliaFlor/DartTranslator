@@ -1,14 +1,21 @@
-package variavel;
+package variable;
 
-import dados.DadosContainer;
+import data.DataContainer;
 import enums.Type;
-import file.Writer;
+import file.WriterManager;
 import io.InputHandler;
 import util.Util;
 
 import static enums.Type.*;
 
-public class VariableHandler implements DadosContainer {
+/**
+ * <p>
+ * Classe reponsável por traduzir a definição das variáveis
+ * </p>
+ */
+public class VariableHandler implements DataContainer {
+
+    private static final String USER_INPUT = "stdin.readLineSync()";
 
     private static final String EMPTY_STRING = "";
     private static final String WHITE_SPACE = " ";
@@ -18,77 +25,84 @@ public class VariableHandler implements DadosContainer {
     private static final String ASPAS_DUPLAS = "\"";
 
 
+    /**
+     * <p>
+     * Defini uma variável
+     * </p>
+     *
+     * @param line linha que contém a variável
+     */
     public static void definirVariavel(String line) {
-        if (line.startsWith(STRING.get())) {
+        if (line.startsWith(STRING.dart())) {
             line = limpaString(line, STRING);
             String[] partes = line.split(IGUAL);
             String nome = partes[0];
             String valor;
-            
-            if (partes[1].contains("stdin.readLineSync()")) {
-                Writer.addLinha("String " + nome + " = " + InputHandler.input(partes[1], STRING));
+
+            if (partes[1].contains(USER_INPUT)) {
+                WriterManager.addLinha(STRING.java() + " " + nome + " = " + InputHandler.input(STRING));
             } else {
                 valor = (String) Util.getValor(nome);
                 nomesPorTipo.put(nome, STRING);
                 strings.put(nome, valor);
-                Writer.addLinha("String " + nome + " = " + valor);
+                WriterManager.addLinha(STRING.java() + " " + nome + " = " + valor);
             }
-        } else if (line.startsWith(INT.get())) {
-            line = limpaString(line, Type.INT);
+        } else if (line.startsWith(INT.dart())) {
+            line = limpaString(line, INT);
             String[] partes = line.split(IGUAL);
             String nome = partes[0];
             Integer valor;
 
-            if (line.contains("stdin.readLineSync()")) {
-                Writer.addLinha("int " + nome + " = " + InputHandler.input(partes[1], Type.INT));
+            if (line.contains(USER_INPUT)) {
+                WriterManager.addLinha(INT.java() + " " + nome + " = " + InputHandler.input(INT));
                 return;
             } else if (nomesPorTipo.containsKey(nome)) {
                 valor = (Integer) Util.getValor(nome);
             } else {
                 valor = Integer.valueOf(partes[1]);
             }
-            
-            nomesPorTipo.put(nome, Type.INT);
+
+            nomesPorTipo.put(nome, INT);
             ints.put(nome, valor);
-            Writer.addLinha("int " + nome + " = " + valor);
-        } else if (line.startsWith(DOUBLE.get()) || line.startsWith(NUM.get())) {
+            WriterManager.addLinha(INT.java() + " " + nome + " = " + valor);
+        } else if (line.startsWith(DOUBLE.dart()) || line.startsWith(NUM.dart())) {
             line = limpaString(line, DOUBLE);
             line = limpaString(line, Type.NUM);
             String[] partes = line.split(IGUAL);
             String nome = partes[0];
             Double valor;
 
-            if (line.contains("stdin.readLineSync()")) {
-                Writer.addLinha("double " + nome + " = " + InputHandler.input(partes[1], DOUBLE));
+            if (line.contains(USER_INPUT)) {
+                WriterManager.addLinha(DOUBLE.java() + " " + nome + " = " + InputHandler.input(DOUBLE));
                 return;
             } else if (nomesPorTipo.containsKey(nome)) {
                 valor = (Double) Util.getValor(nome);
             } else {
                 valor = Double.valueOf(partes[1]);
             }
-            
+
             nomesPorTipo.put(nome, DOUBLE);
             doubles.put(nome, valor);
-            Writer.addLinha("double " + nome + " = " + valor);
-        } else if (line.startsWith(BOOLEAN.get())) {
-            line = limpaString(line, Type.BOOLEAN);
+            WriterManager.addLinha(DOUBLE.java() + " " + nome + " = " + valor);
+        } else if (line.startsWith(BOOLEAN.dart())) {
+            line = limpaString(line, BOOLEAN);
             String[] partes = line.split(IGUAL);
             String nome = partes[0];
             Boolean valor;
 
-            if (line.contains("stdin.readLineSync()")) {
-                Writer.addLinha("boolean " + nome + " = " + InputHandler.input(partes[1], Type.BOOLEAN));
+            if (line.contains(USER_INPUT)) {
+                WriterManager.addLinha(BOOLEAN.java() + " " + nome + " = " + InputHandler.input(BOOLEAN));
                 return;
             } else if (nomesPorTipo.containsKey(nome)) {
                 valor = (Boolean) Util.getValor(nome);
             } else {
                 valor = Boolean.valueOf(partes[1]);
             }
-            
-            nomesPorTipo.put(nome, Type.BOOLEAN);
+
+            nomesPorTipo.put(nome, BOOLEAN);
             booleans.put(nome, valor);
-            Writer.addLinha("boolean " + nome + " = " + valor);
-        } else if (line.contains(VAR.get())) {
+            WriterManager.addLinha(BOOLEAN.java() + " " + nome + " = " + valor);
+        } else if (line.contains(VAR.dart())) {
             line = limpaString(line, Type.VAR);
             String[] partes = line.split(IGUAL);
             String nome = partes[0];
@@ -99,42 +113,42 @@ public class VariableHandler implements DadosContainer {
 				escrever.addLinha("Object "+nome+ ";");
 				 */
                 nomesPorTipo.put(nome, DOUBLE);
-                Writer.addLinha("double " + nome + PONTO_E_VIRGULA);
+                WriterManager.addLinha(DOUBLE.java() + " " + nome + PONTO_E_VIRGULA);
                 return;
             }
 
-            if (partes[1].contains(DOUBLE.get())) {
-                if (line.contains("stdin.readLineSync()")) {
-                    Writer.addLinha("double " + nome + " = " + InputHandler.input(partes[1], DOUBLE));
+            if (partes[1].contains(DOUBLE.dart())) {
+                if (line.contains(USER_INPUT)) {
+                    WriterManager.addLinha(DOUBLE.java() + " " + nome + " = " + InputHandler.input(DOUBLE));
                 }
-            } else if (partes[1].contains(INT.get())) {
-                if (line.contains("stdin.readLineSync()")) {
-                    Writer.addLinha("int " + nome + " = " + InputHandler.input(partes[1], Type.INT));
+            } else if (partes[1].contains(INT.dart())) {
+                if (line.contains(USER_INPUT)) {
+                    WriterManager.addLinha(INT.java() + " " + nome + " = " + InputHandler.input(INT));
                 }
-            } else if (partes[1].contains(STRING.get())) {
-                if (line.contains("stdin.readLineSync()")) {
-                    Writer.addLinha("String " + nome + " = " + InputHandler.input(partes[1], STRING));
+            } else if (partes[1].contains(STRING.dart())) {
+                if (line.contains(USER_INPUT)) {
+                    WriterManager.addLinha(STRING.java() + " " + nome + " = " + InputHandler.input(STRING));
                 }
-            } else if (partes[1].contains(BOOLEAN.get())) {
-                if (line.contains("stdin.readLineSync()")) {
-                    Writer.addLinha("boolean " + nome + " = " + InputHandler.input(partes[1], Type.BOOLEAN));
+            } else if (partes[1].contains(BOOLEAN.dart())) {
+                if (line.contains(USER_INPUT)) {
+                    WriterManager.addLinha(BOOLEAN.java() + " " + nome + " = " + InputHandler.input(BOOLEAN));
                 }
             } else {
                 if (partes[1].startsWith(ASPAS_SIMPLES)) {
                     valor = partes[1].replace(ASPAS_SIMPLES, ASPAS_DUPLAS);
                     nomesPorTipo.put(nome, STRING);
                     strings.put(nome, (String) valor);
-                    Writer.addLinha("String " + nome + " = " + valor);
+                    WriterManager.addLinha(STRING.java() + " " + nome + " = " + valor);
                 } else if (partes[1].equals("true") || partes[1].equals("false")) {
                     valor = partes[1];
-                    nomesPorTipo.put(nome, Type.BOOLEAN);
+                    nomesPorTipo.put(nome, BOOLEAN);
                     booleans.put(nome, (Boolean) valor);
-                    Writer.addLinha("boolean " + nome + " = " + valor);
+                    WriterManager.addLinha(BOOLEAN.java() + " " + nome + " = " + valor);
                 } else {
                     valor = partes[1];
                     nomesPorTipo.put(nome, DOUBLE);
                     doubles.put(nome, (Double) valor);
-                    Writer.addLinha("double " + nome + " = " + valor);
+                    WriterManager.addLinha(DOUBLE.java() + " " + nome + " = " + valor);
                 }
             }
         } else {
@@ -157,7 +171,7 @@ public class VariableHandler implements DadosContainer {
     // ===== MÉTODOS AUXILIARES =====
 
     private static String limpaString(String line, Type tipo) {
-        return line.replace(tipo.get(), EMPTY_STRING)
+        return line.replace(tipo.dart(), EMPTY_STRING)
                 .replace(PONTO_E_VIRGULA, EMPTY_STRING)
                 .replace(WHITE_SPACE, EMPTY_STRING)
                 .replace(ASPAS_SIMPLES, ASPAS_DUPLAS);

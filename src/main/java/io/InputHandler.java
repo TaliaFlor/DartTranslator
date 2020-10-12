@@ -1,29 +1,47 @@
 package io;
 
-import file.Writer;
-import dados.DadosContainer;
+import data.DataContainer;
 import enums.Type;
+import file.WriterManager;
 
-public class InputHandler implements DadosContainer {
+/**
+ * <p>
+ * Classe responsávelpor lidar com a tradução da entrada de dados por parte do usuário (Comandos de entrada)
+ * </p>
+ */
+public class InputHandler implements DataContainer {
 
     private static boolean scannerInicializado = false;
 
 
-    public static String input(String str, Type tipo) {
-        if (!str.contains("stdin.readLineSync()")) {
-            return "";
-        }
-
-        Writer.addImport("java.util.Scanner");
+    /**
+     * <p>
+     * Traduz a recepção de input do usuário
+     * </p>
+     *
+     * @param tipo o tipo da variável que receberá o input
+     * @return o comando de input de acordo com o tipo da variável
+     */
+    public static String input(Type tipo) {
+        WriterManager.addImport("java.util.Scanner");
 
         if (!scannerInicializado) {
-            Writer.addLinha("Scanner in = new Scanner(System.in);");
+            WriterManager.addLinha("Scanner in = new Scanner(System.in);");
             scannerInicializado = true;
         }
 
         return getInput(tipo);
     }
 
+
+    /**
+     * <p>
+     * Retorna o comando de input em Java equivalente para o tipo da variável
+     * </p>
+     *
+     * @param tipo o tipo da variável
+     * @return o comando de input equivalente para o tipo
+     */
     private static String getInput(Type tipo) {
         switch (tipo) {
             case INT:

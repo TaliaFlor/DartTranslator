@@ -1,14 +1,24 @@
 package file;
 
-import dados.DadosContainer;
+import data.DataContainer;
 
 import java.io.*;
 import java.util.stream.Collectors;
 
-public class Reader implements DadosContainer {
+/**
+ * <p>
+ * Classe responsável pela leitura do arquivo a ser traduzido
+ * </p>
+ */
+public class ReaderManager implements DataContainer {
     private static final String nomeArquivo = "Calculadora.dart";
     private static final String path = "src/main/resources/" + nomeArquivo;
 
+    /**
+     * <p>
+     * Lê um arquivo Dart e salva suas linhas na memória
+     * </p>
+     */
     public static void lerArquivo() {
         try {
             File file = new File(path);
@@ -23,4 +33,5 @@ public class Reader implements DadosContainer {
             e.printStackTrace();
         }
     }
+
 }

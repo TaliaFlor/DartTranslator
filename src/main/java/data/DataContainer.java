@@ -1,4 +1,4 @@
-package dados;
+package data;
 
 import enums.Type;
 
@@ -7,7 +7,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public interface DadosContainer {
+/**
+ * <p>
+ * Guarda os dados da tradução em Runtime e os disponibiliza para o uso das outras classes
+ * </p>
+ */
+public interface DataContainer {
 
     /**
      * <p>

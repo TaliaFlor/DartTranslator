@@ -1,41 +1,18 @@
-import dados.DadosContainer;
-import file.Reader;
-import file.Writer;
-import io.OutputHandler;
-import variavel.VariableHandler;
+import file.ReaderManager;
+import file.WriterManager;
+import translator.TranslatorManager;
 
-public class DartReader implements DadosContainer {
+/**
+ * <p>
+ * Classe principal do projeto, responsável por rodar os métodos que fazem a leitura, tradução e escrita dos dados
+ * </p>
+ */
+public class DartReader {
 
     public static void main(String[] args) {
-        Reader.lerArquivo();
-
-        for (String linha : linhas) {
-            linha = linha.trim();
-
-            if (linha.isEmpty()) {
-                Writer.pularLinha();
-                continue;
-            }
-            if (linha.startsWith("import") || linha.startsWith("void")) {
-                continue;
-            }
-
-            if (linha.startsWith("print(")) {
-                OutputHandler.print(linha);
-            } else if (hasVariavel(linha)) {
-                VariableHandler.definirVariavel(linha);
-            } else {
-                Writer.addLinha(linha);
-            }
-        }
-
-        Writer.escreverArquivo();
-    }
-
-
-    private static boolean hasVariavel(String linha) {
-        return linha.startsWith("int") || linha.startsWith("double") || linha.startsWith("num") ||
-                linha.startsWith("boolean") || linha.startsWith("string") || linha.startsWith("var");
+        ReaderManager.lerArquivo();
+        TranslatorManager.traduzirLinhas();
+        WriterManager.escreverArquivo();
     }
 
 }

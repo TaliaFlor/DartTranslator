@@ -1,9 +1,14 @@
 package util;
 
-import dados.DadosContainer;
+import data.DataContainer;
 import enums.Type;
 
-public class Util implements DadosContainer {
+/**
+ * <p>
+ * Possui métodos utilitários que podem ser usados em toda a aplicação
+ * </p>
+ */
+public class Util implements DataContainer {
 
     /**
      * <p>
@@ -17,6 +22,9 @@ public class Util implements DadosContainer {
         Type tipo = nomesPorTipo.get(nome);
         return getValor(nome, tipo);
     }
+
+
+    // ======= MÉTODOS AUXILIARES =======
 
     private static Object getValor(String nome, Type tipo) {
         switch (tipo) {
