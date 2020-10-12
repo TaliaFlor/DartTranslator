@@ -1,34 +1,43 @@
 package funcoes;
 
-import enums.Operator;
+import enums.MathOperator;
+import enums.LogicOperator;
 
 public class Operators {
 
-	private Object defineOperadores(String str) {
+	public MathOperator defineOperadores(String str) {
 		if (str.contains("+")) {
-			return Operator.SOMA;
+			return MathOperator.SOMA;
 		} else if (str.contains("-")) {
-			return Operator.SUBTRACAO;
+			return MathOperator.SUBTRACAO;
 		} else if (str.contains("*")) {
-			return Operator.MULTIPLICACAO;
+			return MathOperator.MULTIPLICACAO;
 		} else if (str.contains("/")) {
-			return Operator.DIVISAO;
+			return MathOperator.DIVISAO;
 		}
 		return null;
 	}
 
-	private Object defineCondicionais(String str) {
+	public LogicOperator defineCondicionais(String str) {
 		if (str.contains(">")) {
-			return Operator.MAIOR_QUE;
+			return LogicOperator.MAIOR_QUE;
 		} else if (str.contains("<")) {
-			return Operator.MENOR_QUE;
+			return LogicOperator.MENOR_QUE;
 		} else if (str.contains(">=")) {
-			return Operator.MAIOR_IGUAL;
+			return LogicOperator.MAIOR_IGUAL;
 		} else if (str.contains("<=")) {
-			return Operator.MENOR_IGUAL;
+			return LogicOperator.MENOR_IGUAL;
+		}else if(str.contains("==")){
+			return LogicOperator.IGUAL;
+		}else if(str.contains("!=")){
+			return LogicOperator.DIFERENTE;
 		}
 		return null;
 
 	}
+
+
+
+
 
 }
