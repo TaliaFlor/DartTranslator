@@ -3,8 +3,6 @@ package arquivo;
 import interfaces.DartHandler;
 
 import java.io.*;
-import java.util.Collections;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class LerArquivo implements DartHandler {

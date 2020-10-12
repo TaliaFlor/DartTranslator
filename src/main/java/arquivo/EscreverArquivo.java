@@ -1,10 +1,10 @@
 package arquivo;
 
+import interfaces.DartHandler;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import interfaces.DartHandler;
 
 public class EscreverArquivo implements DartHandler {
     private static List<String> imports = new ArrayList<>();
@@ -39,7 +39,6 @@ public class EscreverArquivo implements DartHandler {
             }
             br.write(fechaColchetes);
             br.newLine();
-
 
 
             br.close();
