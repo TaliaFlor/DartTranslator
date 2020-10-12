@@ -25,10 +25,24 @@ public enum Type {
     }
 
 
+    /**
+     * <p>
+     * Retorna o tipo da váriavel em Dart
+     * </p>
+     *
+     * @return o tipo da variável em dart
+     */
     public String dart() {
         return dart;
     }
 
+    /**
+     * <p>
+     * Retorna o tipo equivalente da variável em Java
+     * </p>
+     *
+     * @return o tipo equivalente em Java
+     */
     public String java() {
         return java;
     }
