@@ -1,32 +1,41 @@
 package io;
 
-import arquivo.EscreverArquivo;
+import file.Writer;
+import dados.DadosContainer;
 import enums.Type;
-import interfaces.DartHandler;
 
-public class InputHandler implements DartHandler {
-    private static boolean scanner = false;
+public class InputHandler implements DadosContainer {
 
-    public String lerInput(String str, Type tipo) {
+    private static boolean scannerInicializado = false;
+
+
+    public static String input(String str, Type tipo) {
         if (!str.contains("stdin.readLineSync()")) {
             return "";
         }
-        EscreverArquivo escrever = new EscreverArquivo();
-        escrever.addImport("java.util.Scanner");
-        if (!scanner) {
-            escrever.addLinha("Scanner in = new Scanner(System.in);");
-            scanner = true;
+
+        Writer.addImport("java.util.Scanner");
+
+        if (!scannerInicializado) {
+            Writer.addLinha("Scanner in = new Scanner(System.in);");
+            scannerInicializado = true;
         }
-        String in = "";
-        if (tipo == Type.INT) {
-            in = "in.nextInt();";
-        } else if (tipo == Type.DOUBLE || tipo == Type.NUM) {
-            in = "in.nextDouble();";
-        } else if (tipo == Type.BOOLEAN) {
-            in = "in.nextBoolean();";
-        } else if (tipo == Type.STRING || tipo == Type.VAR) {
-            in = "in.nextLine();";
-        }
-        return in;
+
+        return getInput(tipo);
     }
+
+    private static String getInput(Type tipo) {
+        switch (tipo) {
+            case INT:
+                return "in.nextInt();";
+            case NUM:
+            case DOUBLE:
+                return "in.nextDouble();";
+            case BOOLEAN:
+                return "in.nextBoolean();";
+            default:
+                return "in.nextLine();";
+        }
+    }
+
 }

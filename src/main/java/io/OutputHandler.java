@@ -1,31 +1,28 @@
 package io;
 
-import arquivo.EscreverArquivo;
-import interfaces.DartHandler;
+import file.Writer;
+import dados.DadosContainer;
 import util.Util;
 
-public class OutputHandler implements DartHandler {
-    public void escreverOutput(String linha) {
-        if (linha == null || linha.trim().isEmpty()) {
-            return;
-        }
-        if (!linha.startsWith("print(")) {
-            return;
-        }
+public class OutputHandler implements DadosContainer {
 
-        linha = linha.replace("print", "").replace(";", "").replace("(", "").replace(")", "");
-        Object output = null;
+    public static void print(String linha) {
+        String emptyString = "";
 
+        linha = linha.replace("print", emptyString)
+                .replace(";", emptyString)
+                .replace("(", emptyString)
+                .replace(")", emptyString);
+
+        Object output;
         if (linha.startsWith("'")) {
             output = linha.replace("'", "\"");
         } else if (nomesPorTipo.containsKey(linha)) {
-            Util util = new Util();
-            output = util.getVariavel(linha);
+            output = Util.getValor(linha);
         } else {
             output = linha;
         }
-        EscreverArquivo escrever = new EscreverArquivo();
-        escrever.addLinha("System.out.println(" + output + ");");
 
+        Writer.addLinha("System.out.println(" + output + ");");
     }
 }

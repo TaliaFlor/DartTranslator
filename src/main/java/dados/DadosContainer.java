@@ -1,4 +1,4 @@
-package interfaces;
+package dados;
 
 import enums.Type;
 
@@ -7,7 +7,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public interface DartHandler {
+public interface DadosContainer {
+
+    /**
+     * <p>
+     * Contém todas as linhas do arquivo .dart de entrada
+     * </p>
+     */
+    List<String> linhas = new ArrayList<>();
+
 
     /**
      * <p>
@@ -17,16 +25,11 @@ public interface DartHandler {
     Map<String, Type> nomesPorTipo = new HashMap<>();
 
 
-    // Contém o nome da variável e seu valor de acordo com o seu tipo
+    // Contém os nomes das variáveis e seus valores de acordo com seus tipos
     Map<String, Integer> ints = new HashMap<>();
     Map<String, Double> doubles = new HashMap<>();
     Map<String, Boolean> booleans = new HashMap<>();
     Map<String, String> strings = new HashMap<>();
     Map<String, Object> objects = new HashMap<>();
-
-    List<String> linhas = new ArrayList<>();
-
-
-    //void readLine(String line);
 
 }

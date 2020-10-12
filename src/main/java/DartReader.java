@@ -1,45 +1,40 @@
-import arquivo.EscreverArquivo;
-import arquivo.LerArquivo;
-import funcoes.DeclaraVariavel;
-import interfaces.DartHandler;
+import dados.DadosContainer;
+import file.Reader;
+import file.Writer;
 import io.OutputHandler;
+import variavel.VariableHandler;
 
-public class DartReader implements DartHandler {
-
+public class DartReader implements DadosContainer {
 
     public static void main(String[] args) {
-
-
-        LerArquivo file = new LerArquivo();
-
-
-        file.lerArquivo();
-        OutputHandler saida = new OutputHandler();
-        DeclaraVariavel variavel = new DeclaraVariavel();
-        EscreverArquivo escrever = new EscreverArquivo();
+        Reader.lerArquivo();
 
         for (String linha : linhas) {
             linha = linha.trim();
-            if (linha == null || linha.trim().isEmpty() || linha.startsWith("import") || linha.startsWith("void")) {
-                continue;
 
+            if (linha.isEmpty()) {
+                Writer.pularLinha();
+            }
+            if (linha.startsWith("import") || linha.startsWith("void")) {
+                continue;
             }
 
             if (linha.startsWith("print(")) {
-                saida.escreverOutput(linha);
-
-            } else if (linha.startsWith("int") || linha.startsWith("double") || linha.startsWith("num") ||
-                    linha.startsWith("boolean") || linha.startsWith("string") || linha.startsWith("var")) {
-                variavel.definicaoDeVariavel(linha);
+                OutputHandler.print(linha);
+            } else if (isVariavel(linha)) {
+                VariableHandler.definirVariavel(linha);
             } else {
-                escrever.addLinha(linha);
+                Writer.addLinha(linha);
             }
-
-
         }
 
-        escrever.escreverArquivo();
-
-
+        Writer.escreverArquivo();
     }
+
+
+    private static boolean isVariavel(String linha) {
+        return linha.startsWith("int") || linha.startsWith("double") || linha.startsWith("num") ||
+                linha.startsWith("boolean") || linha.startsWith("string") || linha.startsWith("var");
+    }
+
 }

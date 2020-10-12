@@ -1,29 +1,39 @@
 package util;
 
+import dados.DadosContainer;
 import enums.Type;
-import interfaces.DartHandler;
 
-public class Util implements DartHandler {
+public class Util implements DadosContainer {
 
-    public Object getVariavel(String nomeVariavel) {
-        if (!nomesPorTipo.containsKey(nomeVariavel)) {
-            return null;
-        }
-        Type tipo = nomesPorTipo.get(nomeVariavel);
-        Object valor = null;
-        if (tipo == Type.INT) {
-            valor = ints.get(nomeVariavel);
-        } else if (tipo == Type.BOOLEAN) {
-            valor = booleans.get(nomeVariavel);
-        } else if (tipo == Type.DOUBLE || tipo == Type.NUM) {
-            valor = doubles.get(nomeVariavel);
-        } else if (tipo == Type.STRING) {
-            valor = strings.get(nomeVariavel);
-        } else if (tipo == Type.VAR) {
-            valor = objects.get(nomeVariavel);
-        }
-        return valor;
+    /**
+     * <p>
+     * Retorna o valor da variável
+     * </p>
+     *
+     * @param nome o nome da variável
+     * @return o valor da variável
+     */
+    public static Object getValor(String nome) {
+        Type tipo = nomesPorTipo.get(nome);
+        return getValor(nome, tipo);
     }
 
+    private static Object getValor(String nome, Type tipo) {
+        switch (tipo) {
+            case INT:
+                return ints.get(nome);
+            case NUM:
+            case DOUBLE:
+                return doubles.get(nome);
+            case BOOLEAN:
+                return booleans.get(nome);
+            case STRING:
+                return strings.get(nome);
+            case VAR:
+                return objects.get(nome);
+            default:
+                return null;
+        }
+    }
 
 }
