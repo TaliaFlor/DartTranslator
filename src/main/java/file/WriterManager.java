@@ -1,7 +1,5 @@
 package file;
 
-import data.DataContainer;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +9,7 @@ import java.util.List;
  * Classe responsável pela escrita das linhas traduzidas
  * </p>
  */
-public class WriterManager implements DataContainer {
+public class WriterManager {
     private static final String nomeArquivo = "Calculadora.java";
     private static final String path = "src/main/resources/" + nomeArquivo;
 

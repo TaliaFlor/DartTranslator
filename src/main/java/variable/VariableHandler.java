@@ -1,19 +1,23 @@
 package variable;
 
-import data.DataContainer;
 import enums.Type;
 import file.WriterManager;
 import io.InputHandler;
 import util.Util;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>
  * Classe reponsável por traduzir a definição das variáveis
  * </p>
  */
-public class VariableHandler implements DataContainer {
+public class VariableHandler {
 
     private static final String EMPTY_STRING = "";
+
+    private static final Map<String, Type> tipos = new HashMap<>();     // Contém os tipos das variáveis
 
 
     /**
@@ -36,40 +40,11 @@ public class VariableHandler implements DataContainer {
         } else {
             tipo = Type.VAR;
         }
-        setVariavel(line, tipo);
+        writeVariavel(line, tipo);
     }
 
 
     // ===== MÉTODOS AUXILIARES =====
-
-    /**
-     * <p>
-     * Adiciona uma linha que recebe um valor atribuido
-     * </p>
-     *
-     * @param nome  o nome da variável
-     * @param valor o valor atribuido a variável
-     * @param tipo  o tipo da variável
-     */
-    private static void addAtribuicao(String nome, Object valor, Type tipo) {
-        WriterManager.addLinha(tipo.java() + " " + nome + " = " + valor);
-    }
-
-    /**
-     * <p>
-     * Seta o nome, o tipo e o valor da variável nos lugares necessários,
-     * além de adicionar a linha do comando para se escrita
-     * </p>
-     *
-     * @param nome  o nome da variável
-     * @param valor o valor da variável
-     * @param tipo  o tipo da variável
-     */
-    private static void setVarInfo(String nome, Object valor, Type tipo) {
-        tipos.put(nome, tipo);
-        valores.put(nome, valor);
-        addAtribuicao(nome, valor, tipo);
-    }
 
     /**
      * <p>
@@ -95,58 +70,50 @@ public class VariableHandler implements DataContainer {
      * Retorna o tipo verdadeiro da variável. Para ser usado com variáveis do tipo VAR
      * </p>
      *
-     * @param line a linha que contém a variável
+     * @param valor o valor da variável
      * @return o tipo da variável
      */
-    private static Type getTrueType(String line) {
+    private static Type getTrueType(String valor) {
         Type type;
-        if (Util.isInt(line)) {
-            type = Type.INT;
-        } else if (Util.isDouble(line) || Util.isNum(line)) {
-            type = Type.DOUBLE;
-        } else if (Util.isBoolean(line)) {
+        if (tipos.containsKey(valor)) {   // Se está recebendo o valor de uma variável, seu tipo é igual o da variável
+            type = tipos.get(valor);
+        } else if (Util.isString(valor)) {
+            type = Type.STRING;
+        } else if (Util.isBoolean(valor)) {
             type = Type.BOOLEAN;
         } else {
-            type = Type.STRING;
+            type = Type.DOUBLE;
         }
         return type;
     }
 
     /**
      * <p>
-     * Seta a variável em memória e reserva a sua linha de declaração para ser escrita
+     * Reserva a forma equivalente como a declaração da variável deve ser escrita em Java
      * </p>
      *
      * @param line a linha que contém a variável
      * @param tipo o tipo da variável
      */
-    private static void setVariavel(String line, Type tipo) {
+    private static void writeVariavel(String line, Type tipo) {
         String[] partes = getPartes(line);
         String nome = partes[0];
+        Object valor = "null";
 
-        if (partes.length == 1) {   // Variável que contém apenas declaração, mas nenhuma atribuição na linha lida
-            tipos.put(nome, tipo);
-            WriterManager.addLinha(tipo.java() + " " + nome + " = null;");
-            return;
-        }
-
-        if (tipo == Type.VAR) {
-            tipo = getTrueType(partes[1]);
-        }
-
-        if (partes[1].contains("stdin.readLineSync()")) {   // Adiciona linha que recebe o input do usuário
-            addAtribuicao(nome, InputHandler.input(tipo), tipo);
-            return;
-        }
-
-        Object valor;
-        if (tipos.containsKey(partes[1])) {
-            valor = valores.get(partes[1]);
-        } else {
+        if (partes.length > 1) {
             valor = partes[1];
         }
 
-        setVarInfo(nome, valor, tipo);
+        if (tipo == Type.VAR && partes.length > 1) {
+            tipo = getTrueType(partes[1]);
+        }
+
+        if (partes.length > 1 && partes[1].contains("stdin.readLineSync()")) {   // Adiciona linha que recebe o input do usuário
+            valor = InputHandler.input(tipo);
+        }
+
+        tipos.put(nome, tipo);
+        WriterManager.addLinha(tipo.java() + " " + nome + " = " + valor);
     }
 
 }
