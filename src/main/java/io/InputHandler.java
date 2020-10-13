@@ -1,6 +1,5 @@
 package io;
 
-import data.DataContainer;
 import enums.Type;
 import file.WriterManager;
 
@@ -9,7 +8,7 @@ import file.WriterManager;
  * Classe responsávelpor lidar com a tradução da entrada de dados por parte do usuário (Comandos de entrada)
  * </p>
  */
-public class InputHandler implements DataContainer {
+public class InputHandler {
 
     private static boolean scannerInicializado = false;
 

@@ -1,6 +1,5 @@
 package io;
 
-import data.DataContainer;
 import file.WriterManager;
 
 /**
@@ -8,7 +7,7 @@ import file.WriterManager;
  * Classe responsávelpor lidar com a tradução da saída de dados (Comandos de saída)
  * </p>
  */
-public class OutputHandler implements DataContainer {
+public class OutputHandler {
     private static final String EMPTY_STRING = "";
     private static final String ASPAS_SIMPLES = "'";
     private static final String ASPAS_DUPLAS = "\"";
@@ -23,8 +22,7 @@ public class OutputHandler implements DataContainer {
      */
     public static void print(String linha) {
         linha = limparLinha(linha);
-        Object output = getOutput(linha);
-        WriterManager.addLinha("System.out.println(" + output + ");");
+        WriterManager.addLinha("System.out.println(" + getOutput(linha) + ");");
     }
 
 
@@ -57,8 +55,6 @@ public class OutputHandler implements DataContainer {
         Object output;
         if (linha.startsWith(ASPAS_SIMPLES)) {
             output = linha.replace(ASPAS_SIMPLES, ASPAS_DUPLAS);
-        } else if (tipos.containsKey(linha)) {
-            output = valores.get(linha);
         } else {
             output = linha;
         }
