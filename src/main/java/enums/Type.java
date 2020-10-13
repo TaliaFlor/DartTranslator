@@ -7,11 +7,11 @@ package enums;
  */
 public enum Type {
 
-    INT("int", "int"),
-    DOUBLE("double", "double"),
-    NUM("num", "double"),
+    INT("int", "Integer"),
+    DOUBLE("double", "Double"),
+    NUM("num", "Double"),
     STRING("string", "String"),
-    BOOLEAN("boolean", "boolean"),
+    BOOLEAN("boolean", "Boolean"),
     VAR("var", "Object");
 
 

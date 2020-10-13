@@ -76,16 +76,4 @@ public class Util {
                 || line.startsWith(ASPAS_SIMPLES);
     }
 
-    /**
-     * <p>
-     * Indica se dado valor é do tipo var
-     * </p>
-     *
-     * @param line a linha a ser avaliada
-     * @return se é um var ou não
-     */
-    public static boolean isVar(String line) {
-        return line.startsWith(Type.VAR.dart()) || line.contains(Type.VAR.dart());
-    }
-
 }
