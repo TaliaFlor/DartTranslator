@@ -43,6 +43,6 @@ Esse programa traduz um código Dart simples para um código Java.
 
 # Run
 
-<p>O projeto já vem com um código Dart pronto para ser traduzido, encontrado em `src/main/resources/Calculadora.dart`. O projeto está configurado para rodar este arquivo especificamente, portanto caso queira-se rodar outro código deve-se entrar nas classes `file.ReaderManager` e `file.WriterManager` e mudar a variável `nomeArquivo`, deixando as suas respectivas extensões intactas.</p>
+O projeto já vem com um código Dart pronto para ser traduzido, encontrado em `src/main/resources/Calculadora.dart`. O projeto está configurado para rodar este arquivo especificamente, portanto caso queira-se rodar outro código deve-se entrar nas classes `file.ReaderManager` e `file.WriterManager` e mudar a variável `nomeArquivo`, deixando as suas respectivas extensões intactas.
 
-<p>Para rodar o projeto basta apenas rodar o `main`.</p>
+Para rodar o projeto basta apenas rodar o `main`.
