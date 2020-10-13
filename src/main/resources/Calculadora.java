@@ -13,7 +13,7 @@ System.out.println("Divisão - 3");
 System.out.println("Multiplicação - 4");
 int op = in.nextInt();
 
-double result;
+Object result;
 if(op == 1){
 result = a + b;
 }else if(op == 2){

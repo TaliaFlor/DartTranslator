@@ -21,20 +21,16 @@ public interface DataContainer {
      */
     List<String> linhas = new ArrayList<>();
 
-
     /**
      * <p>
-     * Contém o nome e o tipo de todas as variáveis de todos os tipos
+     * Contém os tipos das variáveis
      * </p>
      */
-    Map<String, Type> nomesPorTipo = new HashMap<>();
+    Map<String, Type> tipos = new HashMap<>();
 
-
-    // Contém os nomes das variáveis e seus valores de acordo com seus tipos
-    Map<String, Integer> ints = new HashMap<>();
-    Map<String, Double> doubles = new HashMap<>();
-    Map<String, Boolean> booleans = new HashMap<>();
-    Map<String, String> strings = new HashMap<>();
-    Map<String, Object> objects = new HashMap<>();
+    /**
+     * Contém os valores das variáveis independentemente do tipo
+     */
+    Map<String, Object> valores = new HashMap<>();
 
 }

@@ -2,7 +2,6 @@ package io;
 
 import data.DataContainer;
 import file.WriterManager;
-import util.Util;
 
 /**
  * <p>
@@ -58,8 +57,8 @@ public class OutputHandler implements DataContainer {
         Object output;
         if (linha.startsWith(ASPAS_SIMPLES)) {
             output = linha.replace(ASPAS_SIMPLES, ASPAS_DUPLAS);
-        } else if (nomesPorTipo.containsKey(linha)) {
-            output = Util.getValor(linha);
+        } else if (tipos.containsKey(linha)) {
+            output = valores.get(linha);
         } else {
             output = linha;
         }
