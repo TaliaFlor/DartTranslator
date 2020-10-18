@@ -98,7 +98,7 @@ public class VariableHandler {
     private static void writeVariavel(String line, Type tipo) {
         String[] partes = getPartes(line);
         String nome = partes[0];
-        Object valor = "null";
+        Object valor = "null;";
 
         if (partes.length > 1) {
             valor = partes[1];
